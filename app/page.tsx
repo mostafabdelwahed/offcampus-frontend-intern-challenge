@@ -2,15 +2,13 @@
 
 import { useState } from "react";
 import OpportunityGrid from "./components/OpportunityGrid";
-import SearchBar from "./components/SearchBar";
-import CategoryFilter from "./components/CategoryFilter";
+import FilterBar from "./components/FilterBar";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("All");
   return <>
-    <SearchBar setSearchTerm={setSearchTerm} />
-    <CategoryFilter returnCategory={setCategory} />
+    <FilterBar returnSearchTerm={setSearchTerm} returnCategory={setCategory} />
     <OpportunityGrid />
   </>;
 }

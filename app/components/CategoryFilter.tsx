@@ -18,30 +18,20 @@ export default function CategoryFilter({ returnCategory }: Props) {
   };
 
   return (
-    <Box sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 2,
-        backgroundColor: 'background.paper',
-        borderBottom: '1px solid',
-        borderColor: 'divider'
-        }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Category</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={category}
-          label="Category"
-          onChange={handleChange}
-        >
-          <MenuItem value={"All"}>All</MenuItem>
-          <MenuItem value={"Internship"}>Internship</MenuItem>
-          <MenuItem value={"Student Club"}>Student Club</MenuItem>
-          <MenuItem value={"Part-time"}>Part-time</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+    <FormControl fullWidth>
+    <InputLabel id="demo-simple-select-label">Category</InputLabel>
+    <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={category}
+        label="Category"
+        onChange={handleChange}
+    >
+        <MenuItem value={"All"}>All</MenuItem>
+        <MenuItem value={"Internship"}>Internship</MenuItem>
+        <MenuItem value={"Student Club"}>Student Club</MenuItem>
+        <MenuItem value={"Part-time"}>Part-time</MenuItem>
+    </Select>
+    </FormControl>
   );
 }
