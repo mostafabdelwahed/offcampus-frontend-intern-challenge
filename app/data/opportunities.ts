@@ -8,7 +8,7 @@ export interface Opportunity {
   description: string;
 }
 
-const MOCK_DATA: Opportunity[] = [
+export const MOCK_DATA: Opportunity[] = [
   {
     id: 1,
     title: "Frontend Engineering Intern",

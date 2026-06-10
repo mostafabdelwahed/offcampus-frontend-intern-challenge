@@ -1,7 +1,5 @@
-import Image from "next/image";
+import OpportunityGrid from "./components/OpportunityGrid";
 
 export default function Home() {
-  return (
-    <div></div>
-  );
+  return <OpportunityGrid />;
 }
