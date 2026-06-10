@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OffCampus Opportunity Board
+
+A micro opportunity search board built with Next.js (App Router) and Material UI, created as part of the OffCampus Frontend Intern Challenge.
 
 ## Getting Started
 
-First, run the development server:
+**Prerequisites:** Node.js 18+ and npm installed.
 
 ```bash
+git clone https://github.com/mostafabdelwahed/offcampus-opportunity-board
+cd offcampus-opportunity-board
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## UX & Logic Decision
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Since the opportunity board is driven entirely by user interaction — search input and category selection — I made the decision to render everything on the client side using the `"use client"` directive. The displayed results change on every filter selection, so there is no meaningful benefit to server rendering here.
 
-## Learn More
+A hybrid approach is technically possible in Next.js App Router: keep the filter bar as a client component that pushes state into the URL as query params, then have the grid as a server component that reads those params and filters on the server. However, for this project that would have been the wrong call. The data is a local static array, not a database or external API, so the server has no privileged access to anything the client doesn't already have. On top of that, triggering a server re-render on every keystroke for six items would add latency with no real gain. Client-side filtering here means the UI responds instantly with no round trips.
 
-To learn more about Next.js, take a look at the following resources:
+## What I'd Add Next
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+With another week, the first thing I'd tackle is replacing the static mock data with a real API layer — and at that point I'd revisit the rendering architecture. With a real database behind the grid, the hybrid pattern is better: the filter bar stays a client component and pushes selections into the URL as query params, while the grid becomes a server component that runs the actual database query on the server and returns only the matching results. That way the client never touches raw data and the server does the heavy lifting where it actually has an advantage.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Beyond that, I'd add more filter dimensions — location type (Remote / Hybrid / On-Campus) and a paid-only toggle, since those are among the first things a student actually cares about.
