@@ -10,7 +10,7 @@ interface Props {
 
 const OpportunityGrid = ({ opportunities }: Props) => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, padding: 2 }}>
       <Grid container spacing={2}>
         {opportunities.map((item: Opportunity) => (
           <Grid size={12} key={item.id}>

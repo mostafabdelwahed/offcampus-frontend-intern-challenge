@@ -4,6 +4,7 @@ import { useState } from "react";
 import OpportunityGrid from "./components/OpportunityGrid";
 import FilterBar from "./components/FilterBar";
 import { Opportunity, MOCK_DATA } from "./data/opportunities";
+import ThemeRegistry from './components/ThemeRegistry';
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,8 +16,10 @@ export default function Home() {
     return matchesSearch && matchesCategory;
   });
 
-  return <>
-    <FilterBar returnSearchTerm={setSearchTerm} returnCategory={setCategory} />
-    <OpportunityGrid opportunities={filteredOpportunities} />
-  </>;
+  return (
+    <ThemeRegistry>
+      <FilterBar returnSearchTerm={setSearchTerm} returnCategory={setCategory} />
+      <OpportunityGrid opportunities={filteredOpportunities} />
+    </ThemeRegistry>
+  );
 }
